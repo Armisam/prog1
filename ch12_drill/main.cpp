@@ -51,13 +51,24 @@ int main()
     t.set_font(Font::times_bold);
 
     //kep beszuras
-    // Image kep{Point{100,50}, "badge.jpg"}; kep.move(50,50);
+    Image kep{Point{300,250}, "badge.jpg"}; 
+    kep.set_mask(Point{200,200}, 200, 200);
+    //kep.move(50, 10);
 
     //kor vonala
     Circle c{Point(500,75),40};
 
+    //ellipszis
+    //Ellipse e{Point{100,200}, 75,25}; ami nem mukodik
+    
+
     //kor kozeppontja
     Mark m{Point(500,75),'x'};
+
+    ostringstream oss;
+    oss << "screen size: " << x_max() << "*" << y_max()
+    << "; window size: " << win.x_max() << "*" << win.y_max();
+    Text sizes {Point{200,300},oss.str()};
 
     //ablak szerkesztes
     win.attach(xa);
@@ -68,8 +79,9 @@ int main()
     win.attach(poly_rect);
     win.attach(t);
     win.attach(c);
+    win.attach(sizes);
     win.attach(m);
-    //win.attach(kep);
+    win.attach(kep);
     win.set_label("Kepernyo");
     win.wait_for_button();
 }
